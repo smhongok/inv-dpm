@@ -1,6 +1,11 @@
 # On Exact Inversion of DPM-solvers
 
-## Applications : Reconstruction
+Official repository of a paper 'On Exact Inversion of DPM-solvers' 
+by Seongmin Hong, Kyeonghyun Lee, Suh Yoon Jeon, Hyewon Bae, and Se Young Chun.
+
+Link: [Project webpage](https://smhongok.github.io/inv-dpm.html)
+
+## Applications: Reconstruction
 
 <img src=scripts/fig2.png  width="800pt">
 
@@ -14,14 +19,14 @@ python main_recon.py --num_inference_steps 50 --solver_order 1 --test_num_infere
 For more adversarial cases, check and run [here](scripts/run_reconstruction.sh). 
 
 ### Parameters
-The important hyperparamters are followings
-- `num_inference_steps`: Steps of sampling process.
+The important hyperparameters are the following
+- `num_inference_steps`: Steps of the sampling process.
 - `solver_order`: Order of sampling process.
-- `test_num_inference_steps`: Steps of inversion process. The default value is same as `num_inference_steps`
-- `inv_order`: Order of inversion process. The default value is same as `solver_order`
+- `test_num_inference_steps`: Steps of the inversion process. The default value is the same as `num_inference_steps`
+- `inv_order`: Order of inversion process. The default value is the same as `solver_order`
 - `wo_decoder_inv`: Choosing whether to not use exact decoder inversion. The default value is False, to use exact decoder inversion.
 
-## Applications : Tree-ring watermark detection
+## Applications: Tree-ring watermark detection
 
 <img src=scripts/fig4.png  width="800pt">
 
@@ -31,7 +36,7 @@ You can reproduce our experiment results by running the following command. Vario
 python main_watermark_detection.py --length 1 --num_inference_steps 10 --inv_order 2
 ```
 
-For more adversial cases, check and run [here](scripts/run_detection.sh). Note that shape of the watermark is fixed to tree-ring, since this is a complicated form of WM to detect.
+For more cases, check and run [here](scripts/run_detection.sh). Note that the shape of the watermark is fixed to tree-ring, since this is a complicated form of WM to detect.
 
 ### More details on experiment results
 Upon running the experiment, the results will be presented in the following format:
@@ -48,11 +53,11 @@ The image generated with WM3 was correctly detected in all 10 cases.
 The ideal result for the experiment is characterized by larger values along the diagonal entries, indicating accurate detection of the corresponding watermark.
 
 ### Parameters
-The important hyperparameters for Tree-Ring are followings:
+The important hyperparameters for Tree-Ring are the following:
 
-- `length` : The number of prompts to conduct the experiment. Our experiment is done with 100. In the example, "--length N" runs 3N images, so please carefully choose the number of images N. 
-- `w_radius` : The radius of generated WMs. The default value is 6. Check `get_watermarking_patterns` in main file, the `keys` tensor is used to define the form of WMs. To adjust the radius of WM, you should adjuts this `keys` tensor.
-- `target_num`: The number of generated WMs and used to compare. Our implementation is fixed on 3, but it can be adjusted by slightly changing size of array storing metrics and confusion matrix.
+- `length`: The number of prompts to conduct the experiment. Our experiment is done with 100. In the example, "--length N" runs 3N images, so please carefully choose the number of images N. 
+- `w_radius`: The radius of generated WMs. The default value is 6. Check `get_watermarking_patterns` in the main file, the `keys` tensor is used to define the form of WMs. To adjust the radius of WM, you should adjust this `keys` tensor.
+- `target_num`: The number of generated WMs used to compare. Our implementation is fixed on 3, but it can be adjusted by slightly changing the size of the array storing metrics and confusion matrix.
 
 
 Adjusting these parameters allows for fine-tuning the watermark detection process for different scenarios and experiment setups.
