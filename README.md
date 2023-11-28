@@ -2,7 +2,7 @@
 
 Official repository of a paper 'On Exact Inversion of DPM-solvers'
 
-by [Seongmin Hong](https://smhongok.github.io), Kyeonghyun Lee, [Suh Yoon Jeon](www.linkedin.com/in/suhyoonjeon), Hyewon Bae, and [Se Young Chun](https://icl.snu.ac.kr/pi).
+by [Seongmin Hong](https://smhongok.github.io), Kyeonghyun Lee, [Suh Yoon Jeon](https://www.linkedin.com/in/suhyoonjeon), Hyewon Bae, and [Se Young Chun](https://icl.snu.ac.kr/pi).
 
 Link: [Project webpage](https://smhongok.github.io/inv-dpm.html)
 
