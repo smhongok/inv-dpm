@@ -1,11 +1,14 @@
 # On Exact Inversion of DPM-solvers
 
-Official repository of a paper 'On Exact Inversion of DPM-solvers' 
-by Seongmin Hong, Kyeonghyun Lee, Suh Yoon Jeon, Hyewon Bae, and Se Young Chun.
+Official repository of a paper 'On Exact Inversion of DPM-solvers'
+
+by [Seongmin Hong](https://smhongok.github.io), Kyeonghyun Lee, [Suh Yoon Jeon](www.linkedin.com/in/suhyoonjeon), Hyewon Bae, and [Se Young Chun](https://icl.snu.ac.kr/pi).
 
 Link: [Project webpage](https://smhongok.github.io/inv-dpm.html)
 
-## Applications: Reconstruction
+We provide two codes of experiment: Reconstruction, and the Tree-ring watermark detection.
+
+## Reconstruction
 
 <img src=scripts/fig2.png  width="800pt">
 
@@ -39,7 +42,7 @@ python main_watermark_detection.py --length 1 --num_inference_steps 10 --inv_ord
 For more cases, check and run [here](scripts/run_detection.sh). Note that the shape of the watermark is fixed to tree-ring, since this is a complicated form of WM to detect.
 
 ### More details on experiment results
-Upon running the experiment, the results will be presented in the following format:
+Upon running the experiment with --length 10, the results will be presented in the following format:
 ```
 Generated with WM1 : |  6 | 4 | 0 | 
 Generated with WM2 : |  1 | 9 | 0 | 
