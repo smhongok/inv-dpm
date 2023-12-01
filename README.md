@@ -4,7 +4,7 @@ Official repository of a paper 'On Exact Inversion of DPM-solvers'
 
 by [Seongmin Hong](https://smhongok.github.io), [Kyeonghyun Lee](https://www.linkedin.com/in/khlee0192), [Suh Yoon Jeon](https://www.linkedin.com/in/suhyoonjeon), [Hyewon Bae](https://www.linkedin.com/in/hyewon-bae-05865a260), and [Se Young Chun](https://icl.snu.ac.kr/pi).
 
-Link: [Project webpage](https://smhongok.github.io/inv-dpm.html)
+Link: [Project webpage](https://smhongok.github.io/inv-dpm.html), [arXiv](https://arxiv.org/abs/2311.18387)
 
 We provide two codes of experiment: Reconstruction, and the Tree-ring watermark detection.
 
@@ -69,3 +69,16 @@ Adjusting these parameters allows for fine-tuning the watermark detection proces
 This code is heavily based on 
 - Yuxin Wen, John Kirchenbauer, Jonas Geiping, and Tom Goldstein. "Tree-Rings Watermarks: Invisible Fingerprints for Diffusion Images." In NeurIPS, 2023. (was in arXiv:2305.20030).
 - Or Patashnik, Daniel Garibi, Idan Azuri, Hadar Averbuch-Elor, and Daniel Cohen-Or. Localizing object-level shape variations with text-to-image diffusion models. In ICCV, 2023.
+
+## bibTeX
+If our code is helpful for your research, please consider citing
+```
+@misc{hong2023exact,
+      title={On Exact Inversion of DPM-Solvers}, 
+      author={Seongmin Hong and Kyeonghyun Lee and Suh Yoon Jeon and Hyewon Bae and Se Young Chun},
+      year={2023},
+      eprint={2311.18387},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
