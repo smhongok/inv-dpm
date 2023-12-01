@@ -2,7 +2,7 @@
 
 Official repository of a paper 'On Exact Inversion of DPM-solvers'
 
-by [Seongmin Hong](https://smhongok.github.io), Kyeonghyun Lee, [Suh Yoon Jeon](https://www.linkedin.com/in/suhyoonjeon), Hyewon Bae, and [Se Young Chun](https://icl.snu.ac.kr/pi).
+by [Seongmin Hong](https://smhongok.github.io), [Kyeonghyun Lee](https://www.linkedin.com/in/khlee0192), [Suh Yoon Jeon](https://www.linkedin.com/in/suhyoonjeon), [Hyewon Bae](https://www.linkedin.com/in/hyewon-bae-05865a260), and [Se Young Chun](https://icl.snu.ac.kr/pi).
 
 Link: [Project webpage](https://smhongok.github.io/inv-dpm.html)
 
@@ -29,7 +29,7 @@ The important hyperparameters are the following
 - `inv_order`: Order of inversion process. The default value is the same as `solver_order`
 - `wo_decoder_inv`: Choosing whether to not use exact decoder inversion. The default value is False, to use exact decoder inversion.
 
-## Applications: Tree-ring watermark detection
+## Application: Tree-ring watermark detection
 
 <img src=scripts/fig4.png  width="800pt">
 
@@ -64,3 +64,8 @@ The important hyperparameters for Tree-Ring are the following:
 
 
 Adjusting these parameters allows for fine-tuning the watermark detection process for different scenarios and experiment setups.
+
+## Citations
+This code is heavily based on 
+- Yuxin Wen, John Kirchenbauer, Jonas Geiping, and Tom Goldstein. "Tree-Rings Watermarks: Invisible Fingerprints for Diffusion Images." In NeurIPS, 2023. (was in arXiv:2305.20030).
+- Or Patashnik, Daniel Garibi, Idan Azuri, Hadar Averbuch-Elor, and Daniel Cohen-Or. Localizing object-level shape variations with text-to-image diffusion models. In ICCV, 2023.
