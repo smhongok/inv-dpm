@@ -1,4 +1,4 @@
-# On Exact Inversion of DPM-solvers
+# [CVPR 2024] On Exact Inversion of DPM-solvers
 
 Official repository of a paper 'On Exact Inversion of DPM-solvers'
 
