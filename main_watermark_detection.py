@@ -28,10 +28,9 @@ def get_watermarking_patterns(pipe, args, device, shape=None, option=None):
         gt_patch_tmp = copy.deepcopy(gt_patch)
         
         keys = torch.Tensor(
-            [[1.1, 0.8, 1.2, 0.9, 0.6, 1.4],
-             [1.1, 0.6, 1.1, 1.2, 0.8, 1.2],
-             [0.7, 1.2, 1.3, 0.8, 0.9, 1.1],
-             [1.2, 0.8, 1.2, 1.1, 0.6, 1.1],
+            [[1.1, 0.8, 1.2, 0.9, 0.6, 1.4, 1.2, 0.8, 1.1, 0.9],
+             [1.1, 0.6, 1.1, 1.2, 0.8, 1.2, 1.1, 0.9, 0.9, 1.1],
+             [0.7, 1.2, 1.3, 0.8, 0.9, 1.1, 0.8, 1.2, 1.3, 0.7],
             ]
         )
         const = 80
@@ -50,7 +49,7 @@ def get_watermarking_patterns(pipe, args, device, shape=None, option=None):
 
 def main(args):
     if args.with_tracking:
-        wandb.init(project='watermark_detection', name=args.run_name)
+        wandb.init(project='watermark_detection for zolp', name=args.run_name)
         wandb.config.update(args)
         table = wandb.Table(columns=['prompt', 'gen_now1', 'gen_now2', 'gen_now3', 'gen_w1', 'gen_w2', 'gen_w3', 'w_metric11', 'w_metric12', 'w_metric13', 'w_metric21', 'w_metric22', 'w_metric23', 'w_metric31', 'w_metric32', 'w_metric33'])
     
@@ -100,8 +99,10 @@ def main(args):
                 current_prompt, 'cuda', 1, args.guidance_scale > 1.0, None)
             text_embeddings = torch.cat([text_embeddings_tuple[1], text_embeddings_tuple[0]])
         else:
-            tester_prompt = ''
-            text_embeddings = pipe.get_text_embedding(tester_prompt)
+            prompt_blank = ''
+            text_embeddings_tuple = pipe.encode_prompt(
+                prompt_blank, 'cuda', 1, args.guidance_scale > 1.0, None)
+            text_embeddings = torch.cat([text_embeddings_tuple[1], text_embeddings_tuple[0]])
 
         # Setup empty arrays for each case
         init_latents_no_w_array = []
@@ -195,22 +196,13 @@ def main(args):
                 no_w_metrics[i][j].append(no_w_metric)
 
         if args.with_tracking:
-            if (args.reference_model is not None) and (i < args.max_num_log_image):
-                table.add_data(current_prompt,
+            table.add_data(current_prompt,
                                wandb.Image(orig_image_no_w_array[0]), wandb.Image(orig_image_no_w_array[1]), wandb.Image(orig_image_no_w_array[2]), 
-                               wandb.Image(orig_image_ws[0]), wandb.Image(orig_image_ws[1]), wandb.Image(orig_image_ws[2]), 
+                               wandb.Image(orig_image_ws[0]), wandb.Image(orig_image_ws[1]), wandb.Image(orig_image_ws[2]),
                                w_metrics[0][0][-1], w_metrics[0][1][-1], w_metrics[0][2][-1], w_metrics[1][0][-1], w_metrics[1][1][-1], w_metrics[1][2][-1], w_metrics[2][0][-1], w_metrics[2][1][-1], w_metrics[2][2][-1],
                                )
-            else:
-                table.add_data(current_prompt,
-                               no_w_metrics[0][0][-1], no_w_metrics[0][1][-1], no_w_metrics[0][2][-1], no_w_metrics[1][0][-1], no_w_metrics[1][1][-1], no_w_metrics[1][2][-1], no_w_metrics[2][0][-1], no_w_metrics[2][1][-1], no_w_metrics[2][2][-1],
-                )
 
         ind = ind + 1
-
-    if args.with_tracking:
-        wandb.log({'Table': table})
-        wandb.finish()
 
     # Calculate confusion matrix of WM detection
     confusion_matrix = np.zeros((3, 3), dtype=int)
@@ -235,6 +227,9 @@ def main(args):
         print()
     print('done')
 
+    if args.with_tracking:
+        wandb.log({'Table': table})
+        wandb.finish()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='diffusion watermark')
@@ -250,8 +245,8 @@ if __name__ == '__main__':
     parser.add_argument('--num_images', default=1, type=int)
     parser.add_argument('--guidance_scale', default=3.0, type=float)
     parser.add_argument('--with_tracking', action='store_true')
-    parser.add_argument('--reference_model', default=None)
-    parser.add_argument('--reference_model_pretrain', default=None)
+    parser.add_argument('--reference_model', default="ViT-g-14")
+    parser.add_argument('--reference_model_pretrain', default="laion2b_s12b_b42k")
     parser.add_argument('--max_num_log_image', default=1000, type=int)
 
     # watermark
